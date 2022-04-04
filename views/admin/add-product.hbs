@@ -1,0 +1,33 @@
+  <section>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <h2 class="text-center">Add Movie</h2><br>
+                  <form method="POST" action="/admin/add-product" enctype="multipart/form-data">
+                   <table>
+                       <tr><label for="">Movie Name</label></th></tr><br>
+                       <tr><input type="text" style="width: 250px;" name="Name" class="form-contrrol"></tr><br>
+
+                        <tr><label for="">Description</label></tr><br>
+                       <tr><textarea name="Description" id="" cols="23" rows="6"></textarea></tr><br>
+
+                        <tr><label for="">Add Image</label></th></tr><br>
+                       <tr><input type="file" name="image" class="form-contrrol"></tr><br><br>
+                        <tr> <button type="submit" class="btn btn-success">Submit</button></tr>
+                   </table>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
+    
+                      {{!-- 
+
+                        
+                        <input type="text" name="Description" class="form-contrrol">
+
+                         <label for="">Image</label>
+                        <input type="file"  class="form-contrrol">
+
+                                          
+                     --}}

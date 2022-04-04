@@ -1,0 +1,25 @@
+ <section>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <h2 class="text-center">Add book</h2><br>
+                  <form method="POST" action="/admin/add-book" enctype="multipart/form-data">
+                   <table>
+                        <tr><label for="">Name of the book</label></th></tr><br>
+                        <tr><input type="text" style="width: 250px;" name="Name"  class="form-contrrol"></tr><br>
+
+                        <tr><label for="">Name of author</label></th></tr><br>
+                        <tr><input type="text" style="width: 250px;" name="author" class="form-contrrol"></tr><br>
+
+                        <tr><label for="">About the book</label></tr><br>
+                       <tr><textarea name="Description" id="" cols="23" rows="6"></textarea></tr><br>
+
+                        <tr><label for="">Add Image</label></th></tr><br>
+                       <tr><input type="file" name="image" class="form-contrrol"></tr><br><br>
+                        <tr> <button type="submit" class="btn btn-success">Submit</button></tr>
+                   </table>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>

@@ -1,0 +1,27 @@
+<head>
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
+</head>
+<section>
+
+  <div class="container">
+    <div class="row">
+      {{#each card}}
+
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src={{this.Image}} alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{this.movie}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            <a href="#" class="btn btn-primary">View more</a>
+          </div>
+        </div>
+      </div>
+
+      {{/each}}
+
+    </div>
+  </div>
+
+
+</section>

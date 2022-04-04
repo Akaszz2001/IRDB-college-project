@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
+</head>
+  <section>
+  
+   <div class="container">
+     <div class="row">
+         {{#each products}}
+ 
+          <div class="col-md-3 mt-5">
+              <div class="card" style="width: 15rem; height:24rem">
+  <img style="height:13rem; widthh:13rem; " class="card-img-top" src="/product-images/{{this.file}}" alt="Card image cap">
+  <div class="card-b ody">
+    <h5 class="card-title">{{this.Name}}</h5>
+    <p class="card-text">{{this.Description}}</p>
+    <a href="#" class="btn btn-primary">View more</a>
+  </div>
+</div> 
+          </div>
+     
+ {{/each}}
+
+     </div>
+   </div>
+    
+    
+  </section>
+
+   
