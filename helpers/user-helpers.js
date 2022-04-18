@@ -32,6 +32,12 @@ module.exports={
                 resolve({status:false})
             }
         })
-    }
+    },
+    // getData:()=>{
+    //     return new Promise((resolve,reject)=>{
+    //         let mData=db.get().collection(collection.PRODUCT_COLLECTION).findOne()
+    //     })
+    //     }
+    // }
     
 } 

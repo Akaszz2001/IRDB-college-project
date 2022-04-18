@@ -1,24 +1,62 @@
 <header>
-      <nav id="nb " class="navbar navbar-expand-lg navbar-light bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">Admin Panel</a>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/admin-header.css" />
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Database <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">All Users</a>
-      </li>
-      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  <div class="foo">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand head" href="../Home/Home.html">IRDb</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav" aria-labelledby="dropdownMenuOffset">
+            <!-- Dropdown Menu -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="View variety of categories">Database
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <a class="dropdown-item" href="#">a</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">.</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">.</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="To add a new book">All users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="To add a new film" href="#">Add Movies</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="To add a new book">Add Books</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="About/About.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="To add a new series">Add TV Series</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Account</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+            <a class="dropdown-item" href="/admin/signup-admin">Signup</a>
+            <a class="dropdown-item" href="/admin/login-admin">Login </a>
+          </div>
+        </div>
+    </nav>
   </div>
-</nav>
-  </header>
+</header>

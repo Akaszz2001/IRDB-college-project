@@ -5,7 +5,7 @@ var router = express.Router();
 var productHelper = require('../helpers/product-helpers')
 var userHelper = require('../helpers/user-helpers')
 const verifyLogin = (req, res, next) => {
-  if (req.session.loggedIn) {
+  if (req.session.user) {
     next()
   } else {
     res.redirect('/login')
@@ -22,12 +22,12 @@ router.get('/', function (req, res, next) {
 
   })
 });
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
+router.get('/login',(req, res) => {
+  if (req.session.user) {
     res.redirect('/')
   } else {
-    res.render('user/login', { "loginErr": req.session.loginErr })
-    req.session.loginErr = false
+    res.render('user/login', { "loginErr": req.session.userLoginErr })
+    req.sessionLoginErr = false
   }
 
 })
@@ -37,22 +37,27 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   userHelper.doSignup(req.body).then((response) => {
     console.log(response)
+    
+    req.session.user = response.user
+    req.session.user = true;
+    res.redirect('/')
   })
-})
+}) 
 router.post('/login', (req, res) => {
   userHelper.doLogin(req.body).then((response) => {
     if (response.status) {
-      req.session.loggedIn = true;
+     
       req.session.user = response.user
+      req.session.user.loggedIn = true;
       res.redirect('/')
     } else {
-      req.session.loginErr = true
+      req.session.userLoginErr = true
       res.redirect('/login')
     }
   })
 })
 router.get('/logout', (req, res) => {
-  req.session.destroy()
+  req.session.user=null;
   res.redirect('/')
 })
 router.get('/homepage', (req, res) => {

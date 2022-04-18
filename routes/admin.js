@@ -1,19 +1,29 @@
 var express = require('express');
 const res = require('express/lib/response');
-const { response } = require('../app');
+const { response, render } = require('../app');
 var router = express.Router();
 var productHelper = require('../helpers/product-helpers')
+var bookHelper = require('../helpers/book-helpers')
+var adminHelper = require('../helpers/admin-helpers')
 
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+
+  res.render('admin/admin-intro', { admin: true })
+
+
+
+});
+router.get('/view-movies', function (req, res, next) {
   productHelper.getAllproducts().then((products) => {
     console.log(products)
     res.render('admin/view-products', { admin: true, products })
   })
+})
 
 
-});
+
 router.get('/add-product', (req, res) => {
   res.render('admin/add-product')
 });
@@ -47,7 +57,7 @@ router.post('/add-product', (req, res) => {
       if (err) {
         res.send(err)
       } else {
-        res.render('admin/add-product')
+        res.render('admin/add-product', { admin: true })
 
       }
     })
@@ -57,9 +67,7 @@ router.post('/add-product', (req, res) => {
     console.log(result)
   })
 })
-router.get('/Add-movie', (req, res) => {
-  res.render('admin/Add-book')
-})
+
 router.get('/delete-product/:id', (req, res) => {
   let proId = req.params.id;
   console.log("id:" + proId)
@@ -90,6 +98,81 @@ router.post('/edit-movie/:id', (req, res) => {
     }
 
 
+  })
+});
+router.get('/Add-book', (req, res) => {
+  res.render('admin/Add-book')
+
+})
+router.get('/view-books', function (req, res) {
+  bookHelper.getAllbooks().then((books) => {
+    res.render('admin/view-books', { admin: true, books })
+  })
+})
+router.post('/Add-book', (req, res) => {
+  if (req.files) {
+    req.body.file = req.files.image.name;
+    var file = req.files.image
+    var filename = file.name
+
+    file.mv('./public/book-images/' + filename, function (err) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.render('admin/Add-book')
+      }
+    })
+  }
+  bookHelper.addBook(req.body, (result) => {
+    console.log(result);
+  })
+})
+router.get('/edit-books/:id', async (req, res) => {
+  let books = await bookHelper.getBooksDetails(req.params.id)
+  res.render('admin/edit-books', { admin: true, books })
+})
+router.post('/edit-books/:id', (req, res) => {
+  req.body.file = req.files.image.name;
+  console.log(req.body);
+
+  bookHelper.updateBooks(req.params.id, req.body).then(() => {
+
+
+
+    if (req.files.image) {
+      let Image = req.files.image
+      var filename = Image.name
+
+      Image.mv('./public/book-images/' + filename)
+
+    }
+    res.redirect('admin/view-books')
+
+  })
+})
+router.get('/delete-book/:id', (req, res) => {
+  let bookId = req.params.id;
+  bookHelper.deleteBook(bookId).then((response) => {
+    res.redirect('admin/view-books')
+  })
+})
+
+
+
+//admin login
+router.get('/login-admin', (req, res) => {
+  res.render('admin/login', { admin: true })
+})
+
+//admin signup
+router.get('/signup-admin', (req, res) => {
+  res.render('admin/signup', { admin: true })
+})
+router.post('/signup', (req, res) => {
+  adminHelper.doSignup(req.body).then((response) => {
+    console.log(req.body);
+    console.log(response);
+    res.redirect('/')
   })
 })
 module.exports = router;
