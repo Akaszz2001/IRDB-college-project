@@ -15,7 +15,8 @@ module.exports = {
     //using promise
     getAllproducts: () => {
         return new Promise(async (resolve, reject) => {
-            let products =await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+            let products = await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+            console.log("products" + products);
             resolve(products)
         })
     },
@@ -50,6 +51,55 @@ module.exports = {
                 }).then((response) => {
                     resolve()
                 })
+        })
+    },
+
+    //post reviews
+    postReview: async (movieId, cd, user, Review) => {
+
+
+        await db.get().collection(collection.PRODUCT_COLLECTION).updateMany({ _id: objectId(movieId) }, {
+            $push: {
+                Reviews: {
+                    Uname: user,
+                    Date: cd,
+                    Review: Review,
+                }
+
+            }
+        }).then(() => {
+            return
+        })
+
+    },
+    //search movies
+    searchMovie: async (searchKey) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({ Name: searchKey }).then((movie) => {
+                if (movie) {
+                    resolve(movie._id);
+                } else {
+                    reject("No Results")
+                }
+
+            })
+
+        })
+
+
+    },
+    postBookReview:async(movieId, cd, user, Review)=>{
+        await db.get().collection(collection.BOOK_COLLECTION).updateMany({ _id: objectId(movieId) }, {
+            $push: {
+                Reviews: {
+                    Uname: user,
+                    Date: cd,
+                    Review: Review,
+                }
+
+            }
+        }).then(() => {
+            return
         })
     }
 }

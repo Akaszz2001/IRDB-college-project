@@ -1,6 +1,6 @@
-<html>
+
     <head>
-        <Title>Login form
+        
         </Title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,28 +15,26 @@
           }
       </style>
       </head>
-            <body>
+            
               <div class="dark">
                 <!-- navbar -->
-                <nav class="navbar navbar-light ">
-                    <div class="container-fluid">
-                      <a class="navbar-brand" href="../Home/Home.html">
-                        IRDb
-                      </a>
-                    </div>
-                  </nav>
+                
                   <center>
                   <p class="heading">
                     Sign in 
                 </p> 
-                <input type="email" name="" id="email" placeholder="email" class="email"><br>
-                <input type="password" name="" id="password" placeholder="password" class="password"><br>
+                <form action="/login" name="login" method="POST"></form>
+                <input type="email" name="Email" id="Email" placeholder="email" class="email"><br>
+                <input type="password" name="Password" id="Password" placeholder="password" class="password"><br>
                 <input type="submit" value="Continue" id="Continue" class="continue "><br>
                 <p class="content2">Don't have an account?
-                <a id = "GFG" class="content" href="../Login and signup/signup.html">
+                <a id = "GFG" class="content" href="/signup">
                     Create new one.
                 </p>
+                {{#if loginErr}}
+            <div class="error"> <p >No user Found...</p></div>
+            
+            {{/if}}
                 </center>
               </div>
-            </body>
-</html>
+      

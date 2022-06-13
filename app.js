@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db=require('./config/connection')
 var session=require('express-session')
+var flash =require('connect-flash')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -31,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-app.use(session({secret:"Key",cookie:{maxAge:600000}}))
+app.use(session({secret:"Key",cookie:{maxAge:60000000}}))
 db.connect((err )=>{
   if(err)
   console.log('connection error'+err)
@@ -45,7 +46,7 @@ app.use('/admin', adminRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
+app.use(flash());
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

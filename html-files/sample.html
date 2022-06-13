@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Document</title>
+  <style>
+    @font-face {
+    font-family: impact;
+    src: url('../fonts/impact.ttf');
+}
+
+    body {
+      background-image: url(http://www.pointgadget.com/wp-content/uploads/2019/12/best-netflix-alternatives.jpg);
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+    .menu-bar{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #f5c518e3;
+    color: #fff;
+    backdrop-filter: blur(5px);
+   
+    }
+    .menu-bar ul{
+      display: inline-flex;
+      list-style: none;
+      color: black;
+    }
+    .menu-bar ul li{
+      width: 120px;
+      margin: 15px;
+      padding: 15px;
+    }
+    .active,   .menu-bar ul li:hover{
+      background-color: aqua;
+      border-radius: 3px;
+       
+    }
+    .sub-menu-1{
+      display: none;
+        
+    }
+    .menu-bar ul li:hover  .sub-menu-1{
+      display: block ;
+      position: absolute;
+      background-color: #686456e3;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="dark">
+    <nav>
+      <div class="container-fluid">
+        <div class="menu-bar">
+          <ul>
+            <li class="active">home</li>
+            <li>database</li>
+            <div class="sub-menu-1">
+              <ul>
+                <li> movie</li>
+                <li>series</li>
+                <li> books</li>
+              </ul>
+            </div>
+            <li>files</li>
+            <li>movies</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</body>
+
+</html>

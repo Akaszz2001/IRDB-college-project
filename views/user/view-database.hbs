@@ -1,8 +1,6 @@
-<head>
-  <link rel="stylesheet" href="/public/stylesheets/style.css">
-</head>
+<head><link rel="stylesheet" href="/stylesheets/style.css"></head>
   <section>
-  
+  <div class="dark">
    <div class="container">
      <div class="row">
          {{#each products}}
@@ -12,8 +10,8 @@
   <img style="height:13rem; widthh:13rem; " class="card-img-top" src="/product-images/{{this.file}}" alt="Card image cap">
   <div class="card-b ody">
     <h5 class="card-title">{{this.Name}}</h5>
-    <p class="card-text">{{this.Description}}</p>
-    <a href="#" class="btn btn-primary">View more</a>
+    
+    <a href="/rating/{{this._id}}" class="btn btn-primary">View more</a>
   </div>
 </div> 
           </div>
@@ -23,7 +21,8 @@
      </div>
    </div>
     
-    
+    </div>
   </section>
 
+   
    

@@ -1,0 +1,31 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/books.css">
+</head>
+  <section>
+  
+<div class="dark">
+     <div class="container">
+     <div class="row">
+         {{#each books}}
+ 
+          <div class="col-md-3 mt-5">
+              <div class="card" style="width: 15rem; height:24rem">
+  <img style="height:13rem; widthh:13rem; " class="card-img-top" src="/book-images/{{this.file}}" alt="Card image cap">
+  <div class="card-b ody">
+    <h5 class="card-title">{{this.Name}}</h5>
+   
+    <a href="/booksDetailedView/{{this._id}}" class="btn btn-primary">View more</a>
+  </div>
+</div> 
+          </div>
+     
+ {{/each}}
+
+     </div>
+   </div>
+</div>
+    
+    
+  </section>
+
+   

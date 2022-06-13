@@ -49,5 +49,11 @@ module.exports = {
                 resolve(response)
             })
         })
-   }
+   },
+    getAllbooks:()=>{
+        return new Promise(async (resolve, reject) => {
+            let books =await db.get().collection(collection.BOOK_COLLECTION).find().toArray()
+            resolve(books)
+        })
+    }
 }

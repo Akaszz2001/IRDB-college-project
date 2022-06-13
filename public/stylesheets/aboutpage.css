@@ -1,10 +1,19 @@
-@font-face {
+.card-img-top{
+    width: 100%;
+    height: 429px;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+  }
+  #nb{
+      background-color: black;
+  }
+  @font-face {
     font-family: impact;
     src: url('../fonts/impact.ttf');
 }
 
 body {
-    background-image: url('https://mocah.org/thumbs/5415825-library-book-bookshelf-read-vintage-reading-book-store-old-books-oldbook-work-architecture-old-creative-commons-images.jpg');
+    background-image: url('https://www.pointgadget.com/wp-content/uploads/2019/12/best-netflix-alternatives.jpg');
     background-size: 90%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #fff;
@@ -44,4 +53,7 @@ padding-top: 15vh;
     padding-top: 4vh;
     padding-left: 9vh;
     padding-right: 9vh;
+}
+.nav-item dropdown{
+    margin-right: 100px;
 }

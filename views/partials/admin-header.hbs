@@ -1,62 +1,75 @@
-<header>
+
+
+<head>
   <link rel="stylesheet" type="text/css" href="/stylesheets/admin-header.css" />
+</head>
 
-  <div class="foo">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <a class="navbar-brand head" href="../Home/Home.html">IRDb</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav" aria-labelledby="dropdownMenuOffset">
-            <!-- Dropdown Menu -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="View variety of categories">Database
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li>
-                  <a class="dropdown-item" href="#">a</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">.</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">.</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="To add a new book">All users</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="To add a new film" href="#">Add Movies</a>
-            </li>
+  <nav class="navbar navbar-expand-lg navbar-light ">
 
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="To add a new book">Add Books</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="About/About.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="To add a new series">Add TV Series</a>
-            </li>
-          </ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin">IRDb<span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-itemdropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Databases
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="DatabasesDropList">
+          <a class="dropdown-item" href="/admin/view-movies">Movies</a>
+          <a class="dropdown-item" href="/admin/view-books">Books</a>
+          <div class="dropdown-divider"></div>
+
         </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Account</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      </li>
 
-            <a class="dropdown-item" href="/admin/signup-admin">Signup</a>
-            <a class="dropdown-item" href="/admin/login-admin">Login </a>
-          </div>
+      <li class="nav-itemdropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Add Databases
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="AddDatabasesDroplist">
+          <a class="dropdown-item" href="/admin/add-product">Add Movies</a>
+          <a class="dropdown-item" href="/admin/Add-book">Add Books</a>
+          <div class="dropdown-divider"></div>
+
         </div>
-    </nav>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Users<span class="sr-only">(current)</span></a>
+      </li>
+
+      <li id="AccountDrop" class="nav-itemdropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{#if a}}
+          {{a.Name}}
+          {{else}}
+          Account
+          {{/if}}
+        </a>
+        <div id="AccountDropdownlist" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {{#if a}}
+          <a class="dropdown-item" href="/logout">Logout</a>
+          {{else}}
+          <a class="dropdown-item" href="/login">Login</a>
+
+          {{/if}}
+        </div>
+      </li>
+
+
+
+    </ul>
+
   </div>
-</header>
+</nav>
+</div>
+

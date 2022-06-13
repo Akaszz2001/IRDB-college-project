@@ -8,23 +8,24 @@
 
 .content2{
     font:100;
-    color: rgb(19, 17, 17);
+    color: #fff;
 }
 .heading{
     padding-top: 15vh;
     padding-bottom: 2vh;
     font-size: 45px;
-    color: rgb(0, 0, 0);
+    color: aliceblue;
 }
 .content{
     text-align: center;
-    color: rgb(19, 19, 19);
+    color: aliceblue;
     padding-top: 15px;
+    text-decoration: none;
     
 }
 .Continue{    
 border-radius: 6px;
-width:190px;
+width:250px;
 background-color: #f5c518e3;
 width:250px;
 margin-bottom: 15px;
@@ -33,13 +34,13 @@ nav{
         background-color: #f5c518e3;
 }
 body{
-    background-image: url(background.jpg);
+    background-image: url(https://external-preview.redd.it/oQthJYU3o61fVXuoIzCxnlPx0TlL6VX9VOyw2crcKVI.jpg?auto=webp&s=ef1fa913624afda51081ad944f75286b1e261b3f);
     color: aliceblue;
     font-weight: bold;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #fff;
     width: 100%;
-    display: flex;
+    
 }
 .dark{
     background-color: rgba(0, 0, 0, 0.82);
@@ -68,7 +69,7 @@ a:hover{
     color: #fff;
     font-weight: 500;
 }
-.continue:hover{
+.Continue:hover{
     color:#000000;
     background-color:#f5c518 ;
     font-style: bold;
@@ -76,4 +77,8 @@ a:hover{
 }
 .content, .content2{
     color: rgba(255, 255, 255, 0.833);
+}
+
+input:hover{
+    color: #fff;
 }

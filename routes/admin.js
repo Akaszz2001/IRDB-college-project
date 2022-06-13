@@ -4,28 +4,33 @@ const { response, render } = require('../app');
 var router = express.Router();
 var productHelper = require('../helpers/product-helpers')
 var bookHelper = require('../helpers/book-helpers')
-var adminHelper = require('../helpers/admin-helpers')
+//  var adminHelper = require('../helpers/admin-helpers')
+const verifyAdmin = (req, res, next) => {
+  if (req.session.user.isAdmin) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-
-  res.render('admin/admin-intro', { admin: true })
-
-
-
+router.get('/', verifyAdmin, function (req, res, next) {
+  let a = req.session.user;
+  res.render('admin/admin-intro', { admin: true, a })
 });
-router.get('/view-movies', function (req, res, next) {
+router.get('/view-movies', verifyAdmin, function (req, res, next) {
   productHelper.getAllproducts().then((products) => {
-    console.log(products)
-    res.render('admin/view-products', { admin: true, products })
+    let a = req.session.user;
+    res.render('admin/view-products', { admin: true, products ,a})
   })
 })
 
 
 
-router.get('/add-product', (req, res) => {
-  res.render('admin/add-product')
+router.get('/add-product', verifyAdmin,(req, res) => {
+  let a = req.session.user;
+  res.render('admin/add-product',{ admin: true,a})
 });
 // router.post('/add-product',(req,res)=>{
 //   console.log(req.body);
@@ -57,28 +62,31 @@ router.post('/add-product', (req, res) => {
       if (err) {
         res.send(err)
       } else {
-        res.render('admin/add-product', { admin: true })
+        let a = req.session.user;
+        res.render('admin/add-product', { admin: true,a })
 
       }
     })
   }
   productHelper.addProduct(req.body, (result) => {
     //     let image=req.files
-    console.log(result)
+    
   })
 })
 
-router.get('/delete-product/:id', (req, res) => {
+router.get('/delete-product/:id',verifyAdmin, (req, res) => {
   let proId = req.params.id;
+
   console.log("id:" + proId)
   productHelper.deleteProduct(proId).then((response) => {
     res.redirect('/admin')
   })
 })
-router.get('/edit-movie/:id', async (req, res) => {
+router.get('/edit-movie/:id',verifyAdmin, async (req, res) => {
   let product = await productHelper.getProductDetails(req.params.id)
-  console.log(product)
-  res.render('admin/edit-movie', { product })
+  let a = req.session.user;
+
+  res.render('admin/edit-movie', { product,admin:true,a })
 });
 
 router.post('/edit-movie/:id', (req, res) => {
@@ -100,13 +108,15 @@ router.post('/edit-movie/:id', (req, res) => {
 
   })
 });
-router.get('/Add-book', (req, res) => {
-  res.render('admin/Add-book')
+router.get('/Add-book',verifyAdmin, (req, res) => {
+  let a = req.session.user;
+  res.render('admin/Add-book',{admin:true,a})
 
 })
-router.get('/view-books', function (req, res) {
+router.get('/view-books',verifyAdmin, function (req, res) {
   bookHelper.getAllbooks().then((books) => {
-    res.render('admin/view-books', { admin: true, books })
+    let a = req.session.user;
+    res.render('admin/view-books', { admin: true, books ,a})
   })
 })
 router.post('/Add-book', (req, res) => {
@@ -124,12 +134,13 @@ router.post('/Add-book', (req, res) => {
     })
   }
   bookHelper.addBook(req.body, (result) => {
-    console.log(result);
+    
   })
 })
-router.get('/edit-books/:id', async (req, res) => {
+router.get('/edit-books/:id',verifyAdmin, async (req, res) => {
   let books = await bookHelper.getBooksDetails(req.params.id)
-  res.render('admin/edit-books', { admin: true, books })
+  let a = req.session.user;
+  res.render('admin/edit-books', { admin: true, books,a })
 })
 router.post('/edit-books/:id', (req, res) => {
   req.body.file = req.files.image.name;
@@ -146,11 +157,11 @@ router.post('/edit-books/:id', (req, res) => {
       Image.mv('./public/book-images/' + filename)
 
     }
-    res.redirect('admin/view-books')
+    res.redirect('admin/view-books', { admin: true })
 
   })
 })
-router.get('/delete-book/:id', (req, res) => {
+router.get('/delete-book/:id',verifyAdmin, (req, res) => {
   let bookId = req.params.id;
   bookHelper.deleteBook(bookId).then((response) => {
     res.redirect('admin/view-books')
@@ -160,19 +171,19 @@ router.get('/delete-book/:id', (req, res) => {
 
 
 //admin login
-router.get('/login-admin', (req, res) => {
-  res.render('admin/login', { admin: true })
-})
+// router.get('/login-admin', (req, res) => {
+//   res.render('admin/login', { admin: true })
+// })
 
-//admin signup
-router.get('/signup-admin', (req, res) => {
-  res.render('admin/signup', { admin: true })
-})
-router.post('/signup', (req, res) => {
-  adminHelper.doSignup(req.body).then((response) => {
-    console.log(req.body);
-    console.log(response);
-    res.redirect('/')
-  })
-})
+// //admin signup
+// router.get('/signup-admin', (req, res) => {
+//   res.render('admin/signup', { admin: true })
+// })
+// router.post('/signup', (req, res) => {
+//   adminHelper.doSignup(req.body).then((response) => {
+//     console.log(req.body);
+//     console.log(response);
+//     res.redirect('/')
+//   })
+// })
 module.exports = router;
