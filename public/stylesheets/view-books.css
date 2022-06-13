@@ -1,10 +1,10 @@
 /* For admin view-books */
 .dark {
    background-color: rgba(0, 0, 0, 0.702);
-   height: 100%;
+  max-height: 100%;
     width: 100%;
    padding-left: 0px;
-   position: absolute;
+   
 }
 body {
    background-image: url('https://i0.wp.com/www.peauxeticexpressions.com/wp-content/uploads/2017/05/Books.jpeg?resize=610%2C390');
@@ -14,9 +14,7 @@ body {
    color: rgb(49, 46, 46);
 }
 .container{
-          
-      background-color: rgb(0, 0, 0)
-   
+      background-color: rgb(0, 0, 0);
 }
 #contents{
    color: #fff;
@@ -27,3 +25,11 @@ body {
  #deleteBtn{
    background-color: #f8e9b6e3;
  }
+#table{
+  padding-top: 100px;
+}
+#heading{
+  text-align: center;
+  color: #fff;
+  font-size: 75px;
+}

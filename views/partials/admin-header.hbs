@@ -42,28 +42,31 @@
 
         </div>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Users<span class="sr-only">(current)</span></a>
-      </li>
-
-      <li id="AccountDrop" class="nav-itemdropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      <li>
+     <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           {{#if a}}
           {{a.Name}}
           {{else}}
           Account
           {{/if}}
-        </a>
-        <div id="AccountDropdownlist" class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {{#if a}}
           <a class="dropdown-item" href="/logout">Logout</a>
           {{else}}
           <a class="dropdown-item" href="/login">Login</a>
-
+          <a class="dropdown-item" href="/signup">Signup</a>
           {{/if}}
+
+
+          {{!- - <a class="dropdown-item" href="#">Something else here</a> --}}
         </div>
+      </div>
       </li>
+
 
 
 

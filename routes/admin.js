@@ -145,9 +145,8 @@ router.get('/edit-books/:id',verifyAdmin, async (req, res) => {
 router.post('/edit-books/:id', (req, res) => {
   req.body.file = req.files.image.name;
   console.log(req.body);
-
   bookHelper.updateBooks(req.params.id, req.body).then(() => {
-
+    res.redirect('/admin/view-books');
 
 
     if (req.files.image) {
@@ -157,7 +156,7 @@ router.post('/edit-books/:id', (req, res) => {
       Image.mv('./public/book-images/' + filename)
 
     }
-    res.redirect('admin/view-books', { admin: true })
+    
 
   })
 })

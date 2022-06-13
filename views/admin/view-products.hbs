@@ -5,14 +5,14 @@
   <style>
     .dark {
     background-color: rgba(0, 0, 0, 0.82);
-    height: 100%;
+    max-height: 100%;
     width: 100%;
-    position: absolute;
+ }
 
-}
       .container{
-
+          padding-top: 100px;
          background-color: rgb(0, 0, 0)
+         
       }
       #contents{
         color: #fff;
@@ -23,19 +23,19 @@
       #deleteBtn{
         background-color: #f8e9b6e3;
       }
+      #heading{
+  text-align: center;
+  color: #fff;
+  font-size: 75px;
+}
   </style>
 </head>
 <div class="dark">
   <div class="container">
-  {{!-- <div class="row mt-4 ">
-
-    <a href="/admin/add-product" class="btn btn-success ml-auto ">Add Movie</a>
-  </div>
-  <div class="row mt-4 ">
-    <a href="/admin/Add-book" class="btn btn-success ml-auto ">Add Book</a>
-  </div> --}}
+  
   <table class="table mt-5">
     <thead>
+      <p id="heading">Movies</p>
       <tr>
         <th scope="col" id="contents" >No</th>
         <th scope="col" id="contents">Movie</th>
