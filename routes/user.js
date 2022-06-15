@@ -17,7 +17,8 @@ const verifyLogin = (req, res, next) => {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('user/homepage')
+  let user = req.session.user;
+  res.render('user/homepage',{user})
 
 });
 router.get('/login', (req, res) => {
