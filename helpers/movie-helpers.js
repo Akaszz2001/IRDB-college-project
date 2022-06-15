@@ -5,42 +5,42 @@ const objectId = require('mongodb').ObjectId
 const async = require('hbs/lib/async')
 const { Collection } = require('mongodb')
 module.exports = {
-    addProduct: (product, callback) => {
+    addMovie: (movie, callback) => {
         console.log(product)
-        db.get().collection('product').insertOne(product).then((data) => {
+        db.get().collection('movie').insertOne(movie).then((data) => {
             // console.log(data)
             callback(true)
         })
     },
     //using promise
-    getAllproducts: () => {
+    getAllmovies: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
-            console.log("products" + products);
-            resolve(products)
+            let movies = await db.get().collection(collection.MOVIE_COLLECTION).find().toArray()
+            console.log("products" + movies);
+            resolve(movies)
         })
     },
-    deleteProduct: (proId) => {
+    deleteMovie: (movId) => {
         return new Promise((resolve, reject) => {
-            console.log(proId)
+            console.log(movID)
             console.log(objectId(proId));
-            db.get().collection(collection.PRODUCT_COLLECTION).deleteOne({ _id: objectId(proId) }).then((response) => {
+            db.get().collection(collection.MOVIE_COLLECTION).deleteOne({ _id: objectId(movId) }).then((response) => {
                 // console.log(response)
                 resolve(response)
             })
         })
     },
-    getProductDetails: (proId) => {
+    getMovieDetails: (movId) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(proId) }).then((product) => {
-                resolve(product)
+            db.get().collection(collection.MOVIE_COLLECTION).findOne({ _id: objectId(movId) }).then((movie) => {
+                resolve(movie)
             })
         })
     },
     //update movie
     updateMovie: (proId, proDetails) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION)
+            db.get().collection(collection.MOVIE_COLLECTION)
                 .updateOne({ _id: objectId(proId) }, {
                     $set: {
                         Name: proDetails.Name,
@@ -58,7 +58,7 @@ module.exports = {
     postReview: async (movieId, cd, user, Review) => {
 
 
-        await db.get().collection(collection.PRODUCT_COLLECTION).updateMany({ _id: objectId(movieId) }, {
+        await db.get().collection(collection.MOVIE_COLLECTION).updateMany({ _id: objectId(movieId) }, {
             $push: {
                 Reviews: {
                     Uname: user,
@@ -75,7 +75,7 @@ module.exports = {
     //search movies
     searchMovie: async (searchKey) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION).findOne({ Name: searchKey }).then((movie) => {
+            db.get().collection(collection.MOVIE_COLLECTION).findOne({ Name: searchKey }).then((movie) => {
                 if (movie) {
                     resolve(movie._id);
                 } else {

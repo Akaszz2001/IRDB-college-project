@@ -2,7 +2,7 @@ var express = require('express');
 const res = require('express/lib/response');
 const { response, render } = require('../app');
 var router = express.Router();
-var productHelper = require('../helpers/product-helpers')
+var movieHelper = require('../helpers/movie-helpers')
 var bookHelper = require('../helpers/book-helpers')
 //  var adminHelper = require('../helpers/admin-helpers')
 const verifyAdmin = (req, res, next) => {
@@ -11,7 +11,7 @@ const verifyAdmin = (req, res, next) => {
   } else {
     res.redirect('/login')
   }
-}
+}    
 
 
 /* GET users listing. */
@@ -20,34 +20,20 @@ router.get('/', verifyAdmin, function (req, res, next) {
   res.render('admin/admin-intro', { admin: true, a })
 });
 router.get('/view-movies', verifyAdmin, function (req, res, next) {
-  productHelper.getAllproducts().then((products) => {
+  movieHelper.getAllmovies().then((movies) => {
     let a = req.session.user;
-    res.render('admin/view-products', { admin: true, products ,a})
+    res.render('admin/view-movies', { admin: true, movies ,a})
   })
 })
 
 
 
-router.get('/add-product', verifyAdmin,(req, res) => {
+router.get('/add-movie', verifyAdmin,(req, res) => {
   let a = req.session.user;
-  res.render('admin/add-product',{ admin: true,a})
+  res.render('admin/add-movie',{ admin: true,a})
 });
-// router.post('/add-product',(req,res)=>{
-//   console.log(req.body);
-//   console.log(req.files); 
-//   productHelper.addProduct(req.body,(result)=>{
-//     let image=req.files
-//     console.log(result)
-//     image.mv('.public/images/'+id+'.jpg',(err,done)=>{
-//       if(!err){
-//         res.render('admin/add-product')
-//       }else{
-//         console.log(err)
-//       }
-//     })
-// })
-// })
-router.post('/add-product', (req, res) => {
+
+router.post('/add-movie', (req, res) => {
   if (req.files) {
     console.log(req.files);
     console.log("file name: ", req.files.image.name);
@@ -63,37 +49,37 @@ router.post('/add-product', (req, res) => {
         res.send(err)
       } else {
         let a = req.session.user;
-        res.render('admin/add-product', { admin: true,a })
+        res.render('admin/add-movie', { admin: true,a })
 
       }
     })
   }
-  productHelper.addProduct(req.body, (result) => {
+ movieHelper.addMovie(req.body, (result) => {
     //     let image=req.files
     
   })
 })
 
 router.get('/delete-product/:id',verifyAdmin, (req, res) => {
-  let proId = req.params.id;
+  let movId = req.params.id;
 
-  console.log("id:" + proId)
-  productHelper.deleteProduct(proId).then((response) => {
+  console.log("id:" + movId)
+  movieHelper.deleteMovie(proId).then((response) => {
     res.redirect('/admin')
   })
 })
 router.get('/edit-movie/:id',verifyAdmin, async (req, res) => {
-  let product = await productHelper.getProductDetails(req.params.id)
+  let movie = await movieHelper.getMovieDetails(req.params.id)
   let a = req.session.user;
 
-  res.render('admin/edit-movie', { product,admin:true,a })
+  res.render('admin/edit-movie', { movie,admin:true,a })
 });
 
 router.post('/edit-movie/:id', (req, res) => {
   req.body.file = req.files.image.name;
   console.log(req.body);
 
-  productHelper.updateMovie(req.params.id, req.body).then(() => {
+  movieHelper.updateMovie(req.params.id, req.body).then(() => {
     res.redirect('/admin')
 
 

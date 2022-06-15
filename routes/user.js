@@ -5,7 +5,7 @@ const async = require('hbs/lib/async');
 const { response } = require('../app');
 const bookHelpers = require('../helpers/book-helpers');
 var router = express.Router();
-var productHelper = require('../helpers/product-helpers')
+var movieHelper = require('../helpers/movie-helpers')
 var userHelper = require('../helpers/user-helpers')
 const verifyLogin = (req, res, next) => {
   if (req.session.user) {
@@ -83,9 +83,9 @@ router.get('/view-database', verifyLogin, (req, res) => {
 
   let user = req.session.user;
   console.log("user session: ", user);
-  productHelper.getAllproducts().then((products) => {
+  movieHelper.getAllmovies().then((movies) => {
 
-    res.render('user/view-database', { products, user })  
+    res.render('user/view-database', { movies, user })  
 
   })
 
@@ -133,14 +133,14 @@ router.post('/rating/:id', (req, res) => {
   let month = ("0" + (dt.getMonth() + 1)).slice(-2);
   let year = dt.getFullYear();
   var currentDate = date + "/" + month + "/" + year;
-  productHelper.postReview(req.params.id, currentDate, userName, req.body.Review).then(() => {
+  movieHelper.postReview(req.params.id, currentDate, userName, req.body.Review).then(() => {
     res.redirect('/');
   })
 
 })
 router.post('/homepage', (req, res) => {
   let search = req.body.searchkey;
-  productHelper.searchMovie(search).then((movieId) => {
+  movieHelper.searchMovie(search).then((movieId) => {
     console.log("user page" + movieId);
     res.redirect(`/rating/${movieId}`)
   }).catch((noMovie) => {
@@ -164,7 +164,7 @@ router.post('/booksDetailedView/:id', (req, res) => {
   let month = ("0" + (dt.getMonth() + 1)).slice(-2);
   let year = dt.getFullYear();
   var currentDate = date + "/" + month + "/" + year;
-  productHelper.postBookReview(req.params.id, currentDate, userName, req.body.Review).then(() => {
+  movieHelper.postBookReview(req.params.id, currentDate, userName, req.body.Review).then(() => {
     res.redirect('/');
   })
 })
