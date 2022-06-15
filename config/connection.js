@@ -5,7 +5,7 @@ const state = {
 };
 module.exports.connect = function (done) {
   const url = process.env.MONGODB_URI;
-  const dbname = "shopping";
+  const dbname = "IRDB";
 
   mongoClient.connect(url, (err, data) => {
     if (err) return done(err);
