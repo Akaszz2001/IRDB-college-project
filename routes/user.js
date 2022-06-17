@@ -84,7 +84,7 @@ router.get('/view-database', verifyLogin, (req, res) => {
   let user = req.session.user;
   console.log("user session: ", user);
   movieHelper.getAllmovies().then((movies) => {
-
+console.log("user side movies",movies);
     res.render('user/view-database', { movies, user })  
 
   })

@@ -6,7 +6,7 @@ const async = require('hbs/lib/async')
 const { Collection } = require('mongodb')
 module.exports = {
     addMovie: (movie, callback) => {
-        console.log(product)
+        console.log(movie)
         db.get().collection('movie').insertOne(movie).then((data) => {
             // console.log(data)
             callback(true)
@@ -16,14 +16,14 @@ module.exports = {
     getAllmovies: () => {
         return new Promise(async (resolve, reject) => {
             let movies = await db.get().collection(collection.MOVIE_COLLECTION).find().toArray()
-            console.log("products" + movies);
+            console.log("movies" + movies.Name);
             resolve(movies)
         })
     },
     deleteMovie: (movId) => {
         return new Promise((resolve, reject) => {
-            console.log(movID)
-            console.log(objectId(proId));
+            console.log(movId)
+            console.log(objectId(movId));
             db.get().collection(collection.MOVIE_COLLECTION).deleteOne({ _id: objectId(movId) }).then((response) => {
                 // console.log(response)
                 resolve(response)

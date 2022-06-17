@@ -56,7 +56,7 @@ module.exports = {
 
     getReview:(movieId)=>{
         return new Promise(async(resolve,reject)=>{
-            let reviews=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id: ObjectId(movieId)}).then((reviews)=>{
+            let reviews=await db.get().collection(collection.MOVIE_COLLECTION).findOne({_id: ObjectId(movieId)}).then((reviews)=>{
                 console.log('reviw:',reviews);
                 resolve(reviews)
             })

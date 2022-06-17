@@ -64,7 +64,7 @@ router.get('/delete-product/:id',verifyAdmin, (req, res) => {
   let movId = req.params.id;
 
   console.log("id:" + movId)
-  movieHelper.deleteMovie(proId).then((response) => {
+  movieHelper.deleteMovie(movId).then((response) => {
     res.redirect('/admin')
   })
 })
@@ -108,14 +108,17 @@ router.get('/view-books',verifyAdmin, function (req, res) {
 router.post('/Add-book', (req, res) => {
   if (req.files) {
     req.body.file = req.files.image.name;
-    var file = req.files.image
-    var filename = file.name
+    var file = req.files.image;
+    var filename = file.name;
+    let a = req.session.user;
 
     file.mv('./public/book-images/' + filename, function (err) {
+      
       if (err) {
         res.send(err)
       } else {
-        res.render('admin/Add-book')
+        
+        res.render('admin/Add-book',{admin:true,a})
       }
     })
   }
@@ -149,7 +152,7 @@ router.post('/edit-books/:id', (req, res) => {
 router.get('/delete-book/:id',verifyAdmin, (req, res) => {
   let bookId = req.params.id;
   bookHelper.deleteBook(bookId).then((response) => {
-    res.redirect('admin/view-books')
+    res.redirect('/admin/view-books')
   })
 })
 
