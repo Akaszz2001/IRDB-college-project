@@ -158,20 +158,5 @@ router.get('/delete-book/:id',verifyAdmin, (req, res) => {
 
 
 
-//admin login
-// router.get('/login-admin', (req, res) => {
-//   res.render('admin/login', { admin: true })
-// })
 
-// //admin signup
-// router.get('/signup-admin', (req, res) => {
-//   res.render('admin/signup', { admin: true })
-// })
-// router.post('/signup', (req, res) => {
-//   adminHelper.doSignup(req.body).then((response) => {
-//     console.log(req.body);
-//     console.log(response);
-//     res.redirect('/')
-//   })
-// })
 module.exports = router;
